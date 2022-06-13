@@ -5,6 +5,7 @@
 
 ## Function Interface
 Input Parameter: 中文句子(str)
+
 Output Return: 英文拼音替換部分詞語的諧音梗句子(str)和英文拼字部分(list of str)
 
 ## Usage
