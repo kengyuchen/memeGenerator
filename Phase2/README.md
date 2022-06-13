@@ -3,7 +3,9 @@
 ## Function Interface
 
 Input parameter: 英文拼字部分(list of str)、關鍵字(list of str)、排除字(list of str)
+
 Output Return: 圖片的numpy array(ndarray)
+
 (抓到的原始圖片也會儲存下來)
 
 ## Usage
