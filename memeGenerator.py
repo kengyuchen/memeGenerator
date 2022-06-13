@@ -11,6 +11,12 @@ def remove_file(name):
 def memeGenerator(chinese_str:str, keyword:list or str=None,negative_keyword:list or str=None):
 	generator = MemeTextGenerator('Phase1/vocabulary3000.txt')
 	result = generator.generate(chinese_str)
+	if result == None:
+		generator = MemeTextGenerator('Phase1/vocabulary7000.txt')
+		result = generator.generate(s)
+	if result == None:
+		print("單字庫無匹配單字")
+		return
 	index = random.randint(0, len(result[0]) - 1)
 	img_arr = get_image_ndarray(result[1][index], keyword, negative_keyword)
 	putcaptions(result[0][index], img_arr)	
@@ -19,5 +25,7 @@ def memeGenerator(chinese_str:str, keyword:list or str=None,negative_keyword:lis
 		remove_file(name)
 
 if __name__ == '__main__':
-	s = u'深藏不露'
-	memeGenerator(s)
+	chinese_str = u'有備而來'
+	keyword = u'卡通'
+	negative_keyword = u'背景'
+	memeGenerator(chinese_str, keyword, negative_keyword)
