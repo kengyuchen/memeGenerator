@@ -105,7 +105,10 @@ class MemeTextGenerator:
         return results, replace_words
 
 if __name__ == '__main__':
-    generator = MemeTextGenerator('vocabulary3000.txt')
     s = u'有備而來'
+    generator = MemeTextGenerator('vocabulary3000.txt')    
     result = generator.generate(s)
+    if result == None:
+        generator = MemeTextGenerator('vocabulary7000.txt')    
+        result = generator.generate(s)
     print(result)
