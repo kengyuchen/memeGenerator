@@ -107,7 +107,10 @@ def putcaptions(caption, array):
 
 if __name__ == "__main__":
     #Phase 2如果傳img/png也可以
-    pic = Image.open('my_image.jpg')
+    print('Insert pic source with file extension 輸入檔案path')
+    insrc = input()
+    pic = Image.open(insrc)
     arr = np.array(pic)
+    print('Input caption 輸入標題')
     capt = input()  #暫時用input()拿string
     putcaptions(capt, arr)
