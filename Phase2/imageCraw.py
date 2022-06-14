@@ -25,7 +25,7 @@ def get_image_ndarray(name:str, keyword:list or str=None,negative_keyword:list o
     url = "https://www.google.com/search?q={}&tbm=isch".format(img_name)
 
     # 建立chromedriver並啟動
-    chrome_driver = r"./chromedriver.exe"
+    chrome_driver = r"./chromedriver"
     option = webdriver.ChromeOptions()
     option.add_argument("headless")
     option.add_argument('--disable-gpu')
