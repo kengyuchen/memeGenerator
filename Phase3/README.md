@@ -11,7 +11,7 @@ GitHub [samgermain/python-meme](https://github.com/samgermain/python-meme.git)
 - generate: 生成圖片，名稱為 "./phase3_id"
 - function
 ```
-putcaptions(caption, array, imgID = 'test')
+putcaptions(caption, array, imgID = '0')
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ $ pip3 install Pillow
 
 ## 直接使用
 需已有一張圖片儲存於檔案夾中
-會生成一張帶有文字的圖片，檔名為 phase3
+會生成一張帶有文字的圖片，檔名為 phase3_id
 ```
 $ python3 main.py
 Insert pic source with file extension 輸入檔案path
