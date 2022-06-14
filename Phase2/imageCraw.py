@@ -6,7 +6,7 @@ from PIL import Image
 import numpy as np
 
 
-def get_image_ndarray(name:str, keyword:list or str=None,negative_keyword:list or str=None)->"ndarray":
+def get_image_ndarray(name:str, keyword:list or str=None,negative_keyword:list or str=None, id:str="0")->"ndarray":
 
     img_name = name
 
@@ -37,16 +37,17 @@ def get_image_ndarray(name:str, keyword:list or str=None,negative_keyword:list o
     time.sleep(4)
     img_real_src = driver.find_element(By.XPATH, "/html/body/div[2]/c-wiz/div[3]/div[2]/div[3]/div/div/div[3]/div[2]/c-wiz/div/div[1]/div[1]/div[3]/div/a/img").get_attribute("src")
     img = requests.get(img_real_src)
-    with open("phase2.jpg", "wb") as file:
+    saved_img_name = "phase2_" + id + ".jpg"
+    with open(saved_img_name, "wb") as file:
         file.write(img.content)
 
     # 用PIL中的Image將本地的檔案打開轉成ndarray
-    pic = Image.open('phase2.jpg')
+    pic = Image.open(saved_img_name)
     arr = np.array(pic)
 
     return arr
 
 
 if __name__ == "__main__":
-    figure_arr = get_image_ndarray(input(), input().split(), input().split())
+    figure_arr = get_image_ndarray(input(), input().split(), input().split(), "1203")
     print(figure_arr)

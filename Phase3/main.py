@@ -94,12 +94,13 @@ class Meme:
 #     img = img.convert("RGB")
 # img.save(outputImage, optimize=True, quality=80)    #Save with some image optimization
 
-def putcaptions(caption, array):
+def putcaptions(caption, array, imgID = '0'):
     captionB = caption.encode(encoding='UTF-8').decode()
     imagedata = Image.fromarray(array)
-    imagedata.save('my_image.png')
-    outputImage = './phase3.png'
-    meme = Meme(captionB, 'my_image.png')
+    inputImage = './phase3_tmp_' + str(imgID) + '.png'
+    outputImage = './phase3_' + str(imgID) + '.png'
+    imagedata.save(inputImage)
+    meme = Meme(captionB, inputImage)
     img = meme.draw()
     if img.mode in ("RGBA", "P"):   #Without this the code can break sometimes
         img = img.convert("RGB")
@@ -114,3 +115,5 @@ if __name__ == "__main__":
     print('Input caption 輸入標題')
     capt = input()  #暫時用input()拿string
     putcaptions(capt, arr)
+    # 無輸入直接測試
+    # putcaptions(caption='哈哈哈笑死', array=np.array(Image.open('my_image.jpg')), imgID='test')
