@@ -2,9 +2,20 @@ from xpinyin import Pinyin
 import Levenshtein
 import numpy as np
 import epitran
+import pickle
 
 class MemeTextGenerator:
-    def __init__(self, word_file, delimiter='\n'):
+    def __init__(self, word_file, delimiter = '\n', candidates_file = None):
+        if candidates_file != None:
+            with open(candidates_file, 'rb') as f:
+                self.candidates = pickle.load(f)
+        else:
+            self.candidates = None
+        with open(word_file, 'r') as f:
+            self.words = f.read().strip().split(delimiter)
+        self.words = np.array(self.words)
+
+    def build_candidates(self, word_file, delimiter = '\n', candidates_file = 'vocabulary.pickle'):
         with open(word_file, 'r') as f:
             self.words = f.read().strip().split(delimiter)
         self.words = np.array(self.words)
@@ -67,13 +78,22 @@ class MemeTextGenerator:
                     index += 1
             return py
         
-        self.candidates = []
+        candidates = []
         for word in self.words:
             ipa = epi.transliterate(word)
             py = ipa_2_py(ipa)
-            self.candidates.append((word, py))
-    
+            candidates.append((word, py))
+        with open(candidates_file, 'wb') as f:
+            pickle.dump(candidates, f)
+
+    def load_candidates(self, candidates_file):
+        with open(candidates_file, 'rb') as f:
+            self.candidates = pickle.load(f)
+
     def generate(self, s):
+        if self.candidates == None:
+            print('No candidates')
+            return
         p = Pinyin()
         min_distance = float('inf')
         distances = []
