@@ -3,11 +3,16 @@
 ## Reference
 GitHub [samgermain/python-meme](https://github.com/samgermain/python-meme.git)
 ## Function Interface
-Input parameter: 欲印出文字（str）、圖片的numpy array(ndarray)
-
-Output parameter: 無
-
-generate: 生成圖片，名稱為 "./phase3"
+- Input parameter: 
+    - caption: 欲印出文字（str）
+    - array: 圖片的numpy array(ndarray)
+    - imgID: 圖片的ID，str或int皆可，預設為"0"
+- Output parameter: 無
+- generate: 生成圖片，名稱為 "./phase3_id"
+- function
+```
+putcaptions(caption, array, imgID = 'test')
+```
 
 ## Usage
 安裝套件Pillow (ie. PIL)
