@@ -5,15 +5,21 @@ import epitran
 import pickle
 
 class MemeTextGenerator:
-    def __init__(self, word_file, delimiter = '\n', candidates_file = None):
+    def __init__(self, word_file = None, delimiter = '\n', candidates_file = None):
         if candidates_file != None:
             with open(candidates_file, 'rb') as f:
                 self.candidates = pickle.load(f)
+                self.words = []
+                for pair in self.candidates:
+                    self.words.append(pair[0])
+                self.words = np.array(self.words)
+        elif word_file != None:
+            with open(word_file, 'r') as f:
+                self.words = f.read().strip().split(delimiter)
+            self.words = np.array(self.words)
         else:
-            self.candidates = None
-        with open(word_file, 'r') as f:
-            self.words = f.read().strip().split(delimiter)
-        self.words = np.array(self.words)
+            print('Need either word_file or candidates_file')
+            raise ValueError
 
     def build_candidates(self, word_file, delimiter = '\n', candidates_file = 'vocabulary.pickle'):
         with open(word_file, 'r') as f:
@@ -86,7 +92,7 @@ class MemeTextGenerator:
         with open(candidates_file, 'wb') as f:
             pickle.dump(candidates, f)
 
-    def load_candidates(self, candidates_file):
+    def load_candidates(self, candidates_file = 'vocabulary.pickle'):
         with open(candidates_file, 'rb') as f:
             self.candidates = pickle.load(f)
 

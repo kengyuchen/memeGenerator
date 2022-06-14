@@ -9,10 +9,10 @@ def remove_file(name):
 		os.remove(name)
 
 def memeGenerator(chinese_str:str, keyword:list or str = None,negative_keyword:list or str = None, img_id:str = '0'):
-	generator = MemeTextGenerator('Phase1/vocabulary3000.txt', candidates_file = 'Phase1/vocabulary3000.pickle')
+	generator = MemeTextGenerator(candidates_file = 'Phase1/vocabulary3000.pickle')
 	result = generator.generate(chinese_str)
 	if result == None:
-		generator = MemeTextGenerator('Phase1/vocabulary7000.txt', candidates_file = 'Phase1/vocabulary7000.pickle')
+		generator = MemeTextGenerator(candidates_file = 'Phase1/vocabulary7000.pickle')
 		result = generator.generate(chinese_str)
 	if result == None:
 		print("單字庫無匹配單字")
