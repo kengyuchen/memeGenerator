@@ -1,5 +1,6 @@
 import discord
 from memeGenerator import memeGenerator
+from memeGenerator import remove_file
 
 with open('token.txt','r',encoding='utf8') as tokenfile:
     token = tokenfile.read().strip()
@@ -8,7 +9,7 @@ bot = discord.Bot(intents=discord.Intents.all())
 
 @bot.event
 async def on_ready():
-    pass
+    print('ready')
 
 @bot.event
 async def on_message(message):
@@ -21,8 +22,9 @@ async def on_message(message):
             breakdown[3].split(',')
         if not breakdown[2] == None:
             breakdown[2].split(',')
-        memeGenerator(breakdown[1],breakdown[2],breakdown[3])
-        file = discord.File('phase3.png')
+        memeGenerator(breakdown[1],breakdown[2],breakdown[3],str(message.id))
+        file = discord.File(f'phase3_{message.id}.png')
         await message.reply(file=file)
+        remove_file(f'phase3_{message.id}.png')
 
 bot.run(token)
