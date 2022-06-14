@@ -17,7 +17,7 @@ async def on_message(message):
         #指令: .gen <句子> [關鍵字1],[關鍵字2],...... [排除字1],[排除字2]...... (如果要排除字就不可以沒有關鍵字) (排除字、關鍵字、句子均不可包含空格)
         breakdown = message.content.split(' ')
         while not len(breakdown) >= 4:
-            len.append(None)
+            breakdown.append(None)
         if not breakdown[3] == None:
             breakdown[3].split(',')
         if not breakdown[2] == None:
