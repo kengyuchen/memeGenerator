@@ -6,7 +6,7 @@
 
 * 安裝套件：`Phase1/`、`Phase2`、 `Phase3/`三個資料夾的`README.md`。
 
-* 請將下載好解壓縮後的chromedriver放到執行時的資料夾，並命名為`chromedriver.exe`。(詳情請參照`Phase2/`)
+* 請將下載好解壓縮後的chromedriver放到執行時的資料夾，並命名為`chromedriver`。(詳情請參照`Phase2/`)
 
 * 請將`Phase3/`裡的`impact.ttf` 和`YuGothB.ttc` 放到執行時的資料夾。
 
