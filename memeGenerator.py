@@ -13,7 +13,7 @@ def memeGenerator(chinese_str:str, keyword:list or str = None,negative_keyword:l
 	result = generator.generate(chinese_str)
 	if result == None:
 		generator = MemeTextGenerator('Phase1/vocabulary7000.txt')
-		result = generator.generate(s)
+		result = generator.generate(chinese_str)
 	if result == None:
 		print("單字庫無匹配單字")
 		return
