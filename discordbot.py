@@ -35,8 +35,8 @@ async def on_message(message):
             file = discord.File(f'phase3_{message.id}.png')
             await message.reply(file=file)
         except exception:
-            traceback.print_exc()
             await message.reply(errormsg[random.randrange(len(errormsg))])
+            traceback.print_exc()
         remove_file(f'phase3_{message.id}.png')
 
 bot.run(token)
