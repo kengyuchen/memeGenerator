@@ -1,11 +1,19 @@
+from logging import exception
 import discord
 from memeGenerator import memeGenerator
 from memeGenerator import remove_file
+import random
+import traceback
 
 with open('token.txt','r',encoding='utf8') as tokenfile:
     token = tokenfile.read().strip()
 
 bot = discord.Bot(intents=discord.Intents.all())
+
+errormsg = [
+    'https://cdn.discordapp.com/attachments/985448312712880150/986651966258151434/unknown.png',
+    'https://cdn.discordapp.com/attachments/985448312712880150/986655956165337138/unknown.png'
+]
 
 @bot.event
 async def on_ready():
@@ -26,8 +34,9 @@ async def on_message(message):
             memeGenerator(breakdown[1],breakdown[2],breakdown[3],str(message.id))
             file = discord.File(f'phase3_{message.id}.png')
             await message.reply(file=file)
-        except:
-            await message.reply('https://cdn.discordapp.com/attachments/985448312712880150/986651966258151434/unknown.png')
+        except exception:
+            traceback.print_exc()
+            await message.reply(errormsg[random.randrange(len(errormsg))])
         remove_file(f'phase3_{message.id}.png')
 
 bot.run(token)
