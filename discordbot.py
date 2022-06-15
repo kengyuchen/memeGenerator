@@ -33,12 +33,8 @@ async def on_message(message):
             memeGenerator(breakdown[1],breakdown[2],breakdown[3],str(message.id))
             file = discord.File(f'phase3_{message.id}.png')
             await message.reply(file=file)
-        except exception as e:
+        except:
             await message.reply(errormsg[random.randrange(len(errormsg))])
-            try:
-                print(e)
-            except:
-                pass
         remove_file(f'phase3_{message.id}.png')
 
 bot.run(token)
