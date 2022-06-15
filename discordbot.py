@@ -22,9 +22,12 @@ async def on_message(message):
             breakdown[3].split(',')
         if not breakdown[2] == None:
             breakdown[2].split(',')
-        memeGenerator(breakdown[1],breakdown[2],breakdown[3],str(message.id))
-        file = discord.File(f'phase3_{message.id}.png')
-        await message.reply(file=file)
+        try:
+            memeGenerator(breakdown[1],breakdown[2],breakdown[3],str(message.id))
+            file = discord.File(f'phase3_{message.id}.png')
+            await message.reply(file=file)
+        except:
+            await message.reply('https://cdn.discordapp.com/attachments/985448312712880150/986651966258151434/unknown.png')
         remove_file(f'phase3_{message.id}.png')
 
 bot.run(token)
