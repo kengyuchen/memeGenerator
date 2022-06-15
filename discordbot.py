@@ -3,7 +3,6 @@ import discord
 from memeGenerator import memeGenerator
 from memeGenerator import remove_file
 import random
-import traceback
 
 with open('token.txt','r',encoding='utf8') as tokenfile:
     token = tokenfile.read().strip()
@@ -34,9 +33,12 @@ async def on_message(message):
             memeGenerator(breakdown[1],breakdown[2],breakdown[3],str(message.id))
             file = discord.File(f'phase3_{message.id}.png')
             await message.reply(file=file)
-        except exception:
+        except exception as e:
             await message.reply(errormsg[random.randrange(len(errormsg))])
-            traceback.print_exc()
+            try:
+                print(e)
+            except:
+                pass
         remove_file(f'phase3_{message.id}.png')
 
 bot.run(token)
