@@ -132,9 +132,9 @@ class MemeTextGenerator:
 
 if __name__ == '__main__':
     s = u'有備而來'
-    generator = MemeTextGenerator('vocabulary3000.txt')    
+    generator = MemeTextGenerator(candidates_file = 'vocabulary3000.pickle')    
     result = generator.generate(s)
     if result == None:
-        generator = MemeTextGenerator('vocabulary7000.txt')    
+        generator = MemeTextGenerator(candidates_file = 'vocabulary7000.pickle')    
         result = generator.generate(s)
     print(result)
