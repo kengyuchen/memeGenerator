@@ -38,7 +38,7 @@ Output Return: 英文拼音替換部分詞語的諧音梗句子(str)和英文拼
 
   ```python
   >>> from MemeTextGenerator import MemeTextGenerator
-  >>> generator = MemeTextGenerator('vocabulary3000.txt')
+  >>> generator = MemeTextGenerator(candidates_file = 'vocabulary3000.pickle')
   >>> s = u'有備而來'
   >>> result = generator.generate(s)
   >>> print(result)
